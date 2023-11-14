@@ -1,2 +1,2 @@
-# proyecto
-proyecto sobre la api de virustotal ASIX 
+# Grupo 10 
+Max, Jairo y Marc 
