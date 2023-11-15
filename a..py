@@ -2,6 +2,7 @@ import requests
 import mysql.connector
 import os
 import shutil
+import hashlib
  
 conexion = mysql.connector.connect(
     host="localhost",
@@ -29,6 +30,19 @@ url = 'https://www.virustotal.com/api/v3/files'
 #falta que recorra ficheros, de momento usamos ruta absoluta (asumimos deuda técnica (somos del barça))
 archivo_ruta = input("Introduce la ruta absoluta del archivo que quieras comprobar ")
  
+def calcular_hash_archivo(ruta_archivo, algoritmo_hash='sha256', tamaño_fragmento=65536):
+    hash_calculado = hashlib.new(algoritmo_hash)
+    with open(ruta_archivo, 'rb') as archivo:
+        fragmento = archivo.read(tamaño_fragmento)
+        while len(fragmento) > 0:
+            hash_calculado.update(fragmento)
+            fragmento = archivo.read(tamaño_fragmento)
+    return hash_calculado.hexdigest()
+
+ruta_del_archivo = input('pon la ruta ')
+hash_resultado = calcular_hash_archivo(ruta_del_archivo)
+print(hash_resultado)
+
 headers = {
     'x-apikey': api_key,
     'accept': 'application/json',
