@@ -6,7 +6,7 @@ import hashlib
  
 conexion = mysql.connector.connect(
     host="localhost",
-    user="jairo",
+    user="jairob",
     password="1234",
     database="virustotal"
 )
