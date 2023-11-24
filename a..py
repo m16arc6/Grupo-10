@@ -15,7 +15,8 @@ create_table_query = """
 CREATE TABLE IF NOT EXISTS comprobacionn (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_archivo VARCHAR(120),
-    resultado VARCHAR(2)
+    resultado VARCHAR(2),
+    hash VARCHAR(100)
 )
 """
  
@@ -97,8 +98,8 @@ else:
  
 print(respuesta.text)
  
-insertar = "INSERT INTO comprobacionn (id_archivo, resultado) VALUES (%s,%s)"
-datos = (id_archivo, resultado)
+insertar = "INSERT INTO comprobacionn (id_archivo, resultado, hash) VALUES (%s,%s,%s)"
+datos = (id_archivo, resultado, hash_resultado)
 cursor.execute(insertar, datos)
 conexion.commit()
  
