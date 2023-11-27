@@ -14,6 +14,7 @@ conexion = mysql.connector.connect(
 create_table_query = """
 CREATE TABLE IF NOT EXISTS comprobacionn (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(120),
     id_archivo VARCHAR(120),
     resultado VARCHAR(2),
     hash VARCHAR(100)
@@ -31,6 +32,9 @@ url = 'https://www.virustotal.com/api/v3/files'
 #falta que recorra ficheros, de momento usamos ruta absoluta (asumimos deuda técnica (somos del barça))
 archivo_ruta = input("Introduce la ruta absoluta del archivo que quieras comprobar ")
  
+separar = archivo_ruta.split('/')
+nombre = separar[-1]
+
 def calcular_hash_archivo(ruta_archivo, algoritmo_hash='sha256', tamaño_fragmento=65536):
     hash_calculado = hashlib.new(algoritmo_hash)
     with open(ruta_archivo, 'rb') as archivo:
@@ -97,9 +101,10 @@ else:
     resultado = 0   #quarentena
  
 print(respuesta.text)
- 
-insertar = "INSERT INTO comprobacionn (id_archivo, resultado, hash) VALUES (%s,%s,%s)"
-datos = (id_archivo, resultado, hash_resultado)
+print(nombre)
+
+insertar = "INSERT INTO comprobacionn (nombre, id_archivo, resultado, hash) VALUES (%s,%s,%s,%s)"
+datos = (nombre, id_archivo, resultado, hash_resultado)
 cursor.execute(insertar, datos)
 conexion.commit()
  
