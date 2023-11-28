@@ -34,7 +34,7 @@ archivo_ruta = input("Introduce la ruta absoluta del archivo que quieras comprob
  
 separar = archivo_ruta.split('/')
 nombre = separar[-1]
-
+ 
 def calcular_hash_archivo(ruta_archivo, algoritmo_hash='sha256', tamaño_fragmento=65536):
     hash_calculado = hashlib.new(algoritmo_hash)
     with open(ruta_archivo, 'rb') as archivo:
@@ -43,11 +43,11 @@ def calcular_hash_archivo(ruta_archivo, algoritmo_hash='sha256', tamaño_fragmen
             hash_calculado.update(fragmento)
             fragmento = archivo.read(tamaño_fragmento)
     return hash_calculado.hexdigest()
-
+ 
 ruta_del_archivo = archivo_ruta
 hash_resultado = calcular_hash_archivo(ruta_del_archivo)
 print(hash_resultado)
-
+ 
 headers = {
     'x-apikey': api_key,
     'accept': 'application/json',
@@ -75,34 +75,37 @@ harmeless = respuesta.json()['data']['attributes']['stats']['harmless']
 if malware >= 1:
     virus = 'virus'
     ruta = '/home/jairo/Escritorio'
+    ruta_virus = '/home/jairo/Escritorio/virus'
     if not os.path.exists(os.path.join(ruta, virus)):
         os.mkdir(os.path.join(ruta, virus))
-        print("carpeta creada")
-    shutil.copy(archivo_ruta, virus)
+        print("carpeta virus creada")
+    shutil.copy(archivo_ruta, os.path.join(ruta_virus, nombre))
     print("movido a carpeta virus")
     resultado = -1   #virus
 elif harmeless >= 1:
     seguro = 'seguro'
     ruta = '/home/jairo/Escritorio'
+    ruta_seguro = '/home/jairo/Escritorio/seguro'
     if not os.path.exists(os.path.join(ruta, seguro)):
         os.mkdir(os.path.join(ruta, seguro))
         print("carpeta creada")
-    shutil.copy(archivo_ruta, seguro)    
+    shutil.copy(archivo_ruta, os.path.join(ruta_seguro, nombre))
     print("movido a carpeta segura")
     resultado = 1   #seguro
 else:
     quarentena = 'quarentena'
     ruta = '/home/jairo/Escritorio'
+    ruta_quarentena = '/home/jairo/Escritorio/quarentena'
     if not os.path.exists(os.path.join(ruta, quarentena)):
         os.mkdir(os.path.join(ruta, quarentena))
         print("carpeta creada")
-    shutil.copy(archivo_ruta, quarentena)    
+    shutil.copy(archivo_ruta, os.path.join(ruta_quarentena, nombre))
     print("movido a carpeta quarentena")
     resultado = 0   #quarentena
- 
+    
 print(respuesta.text)
 print(nombre)
-
+ 
 insertar = "INSERT INTO comprobacionn (nombre, id_archivo, resultado, hash) VALUES (%s,%s,%s,%s)"
 datos = (nombre, id_archivo, resultado, hash_resultado)
 cursor.execute(insertar, datos)
