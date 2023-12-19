@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
 ?>
 
@@ -8,8 +8,8 @@
     </head>
     <body>
 <?php
-if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
-    $servername = "rdbms.strato.de"; // añado el nombre del servidor 
+if (isset($_SESSION['estado']) && $_SESSION['estado'] == 1) {
+    $servername = "rdbms.strato.de"; // añado el nombre del servidor
     $database = "dbs9329838";
     $username = "dbu3679519";
     $password = "cfasix2022.";
@@ -72,7 +72,7 @@ if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
 </html>
 <?php }
     else {
-        session_destroy();
-        echo "Error, sesión no valida";
+    session_destroy();
+    echo "Error, sesión no válida";
     }
 ?>
