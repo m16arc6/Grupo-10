@@ -14,10 +14,10 @@
             if (isset($_REQUEST['login']))// si se ha pulsado el botón con el nombre login 
             {
     
-                $servername = "localhost";
-                $database = "virustotal";
-                $username = "jairo";
-                $password = "1234";
+                $servername = "rdbms.strato.de";
+                $database = "dbs9329838";
+                $username = "dbu3679519";
+                $password = "cfasix2022.";
     
                 $conn = mysqli_connect($servername, $username, $password, $database);
                 if (!$conn) { // significa que si no se haga lo siguiente
