@@ -7,8 +7,10 @@ conexion = mysql.connector.connect(
 )
  
 cursor = conexion.cursor()
+usuarios = "usuarios"
 virustotal = "virustotal"
 cursor.execute(f"CREATE DATABASE {virustotal}")
- 
+cursor.execute(f"CREATE DATABASE {usuarios}")
+
 cursor.close()
 conexion.close()
