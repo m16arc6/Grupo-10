@@ -9,10 +9,10 @@
     <body>
 <?php
 if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
-    $servername = "rdbms.strato.de"; // añado el nombre del servidor 
-    $database = "dbs9329838";
-    $username = "dbu3679519";
-    $password = "cfasix2022.";
+    $servername = "localhost"; // añado el nombre del servidor 
+    $database = "usuarios";
+    $username = "jairo";
+    $password = "1234";
 
     $conn = mysqli_connect($servername, $username, $password, $database);
     if (!$conn) { //sirve para avisar si hay error
@@ -24,13 +24,15 @@ if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
 
     if(isset($_REQUEST['enviar']))
         {
-            $usu = $_REQUEST['usu']; // Extraemos usuario
-            $pas = $_REQUEST['pass']; //Extraemos contraseña sin encriptar
+            $usu = $_REQUEST['nombre']; // Extraemos usuario
+            $apell = $_REQUEST['apellido']; // Extraemos apellidos
+            $mail = $_REQUEST['correo']; //Extraemos correo
+            $pas = $_REQUEST['passwd']; //Extraemos contraseña sin encriptar
             $pash = hash('sha512', $pas); // hacemos un hash con la password con sha512
             #$pash = password_hash($pas, PASSWORD_BCRYPT); //Añadimos el hash para hashear el input del usuario usando el algoritmo CRYPT_BLOWFISH para que encripte la contraseña
             var_dump($pash);
 
-            $sql = "INSERT INTO usuarios (Usu, Pas) VALUES ('$usu', '$pash')"; // guardamos el hash dentro de la base de datos
+            $sql = "INSERT INTO usuarios (usuario, apellido, correo, passwd) VALUES ('$usu', '$apell, '$mail', '$pash')"; // guardamos el hash dentro de la base de datos
             
             if (mysqli_query($conn, $sql)){
                 echo "<br>";
@@ -51,18 +53,24 @@ if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
 
     mysqli_close($conn); // se cierra la conexión
 ?>
-        <form action='alta.php' method='POST'>
+        <form action='registro.php' method='POST'>
             <p>
                 <a href='logout.php'>Cerrar Sesión</a>
             </p>
 
             <h3>ALTA USUARIO:</h3>
 
-            <p> <!-- Campo texto usuario -->
-                <input type='text' name="usu" placeholder='Nombre Usuario'>
+            <p> <!-- Campo usuario -->
+                <input type='text' name="nombre" placeholder='Nombre Usuario'>
+            </p>
+            <p> <!-- Campo apellido -->
+                <input type='text' name="apellido" placeholder='Apellidos'>
+            </p>
+            <p> <!-- Campo correo -->
+                <input type='mail' name="correo" placeholder='Correo'>
             </p>
             <p> <!-- Campo contraseña -->
-                <input type='password' name='pass' placeholder='Contraseña'>
+                <input type='password' name='passwd' placeholder='Contraseña'>
             </p>
             <p> <!-- Campo enviar -->
                 <input type='submit' name='enviar' value='Enviar'>
