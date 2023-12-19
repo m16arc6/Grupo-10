@@ -1,7 +1,3 @@
-<?php 
-    session_start();
-?>
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -78,9 +74,3 @@ if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
         </form>
     </body>
 </html>
-<?php }
-    else {
-        session_destroy();
-        echo "Error, sesión no valida";
-    }
-?>
