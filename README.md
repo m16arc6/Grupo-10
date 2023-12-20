@@ -1,2 +1,2 @@
 # Grupo 10 
-Max, Jairo y Marc 
+Max, Jairo, Marc y Daniar
