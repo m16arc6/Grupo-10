@@ -14,11 +14,10 @@ echo "Connexión correcta<br>";
 if (isset($_REQUEST['enviar'])) {
     $usu = $_REQUEST['nombre']; // Extraemos usuario
     $apell = $_REQUEST['apellido']; // Extraemos apellidos
-    $mail = $_REQUEST['correo']; //Extraemos correo
     $pas = $_REQUEST['passwd']; //Extraemos contraseña sin encriptar
     $pash = hash('sha512', $pas); // hacemos un hash con la password con sha512
 
-    $sql = "INSERT INTO usuarios (usuario, apellido, correo, passwd) VALUES ('$usu', '$apell', '$mail', '$pash')";
+    $sql = "INSERT INTO usuarios (usuario, apellido, passwd) VALUES ('$usu', '$apell', '$pash')";
     
     if (mysqli_query($conn, $sql)) {
         echo "<br>";
@@ -47,9 +46,6 @@ mysqli_close($conn);
             </p>
             <p> <!-- Campo apellido -->
                 <input type='text' name="apellido" placeholder='Apellidos'>
-            </p>
-            <p> <!-- Campo correo -->
-                <input type='mail' name="correo" placeholder='Correo'>
             </p>
             <p> <!-- Campo contraseña -->
                 <input type='password' name='passwd' placeholder='Contraseña'>
