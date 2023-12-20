@@ -5,18 +5,18 @@
     <body>
 <?php
 if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
-    $servername = "localhost"; // añado el nombre del servidor 
+    $servername = "localhost";
     $database = "usuarios";
     $username = "jairo";
     $password = "1234";
 
     $conn = mysqli_connect($servername, $username, $password, $database);
-    if (!$conn) { //sirve para avisar si hay error
-        die("Connexión erronea: " . mysqli_connect_error()); // con el die se cerraría la conexión
+    if (!$conn) {
+        die("Connexión erronea: " . mysqli_connect_error());
         $_SESSION['estado'] = 0;
     }
 
-    echo "Connexión correcta ".$_SESSION['nom']."<br>"; // si funciona imprimirá lo que diga el echo
+    echo "Connexión correcta ".$_SESSION['nom']."<br>";
 
     if(isset($_REQUEST['enviar']))
         {
@@ -28,7 +28,7 @@ if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
             #$pash = password_hash($pas, PASSWORD_BCRYPT); //Añadimos el hash para hashear el input del usuario usando el algoritmo CRYPT_BLOWFISH para que encripte la contraseña
             var_dump($pash);
 
-            $sql = "INSERT INTO usuarios (usuario, apellido, correo, passwd) VALUES ('$usu', '$apell, '$mail', '$pash')"; // guardamos el hash dentro de la base de datos
+            $sql = "INSERT INTO usuarios (usuario, apellido, correo, passwd) VALUES ('$usu', '$apell', '$mail', '$pash')"; // guardamos el hash dentro de la base de datos
             
             if (mysqli_query($conn, $sql)){
                 echo "<br>";
@@ -38,14 +38,6 @@ if ((isset($_SESSION['estado'])) || ($_SESSION['estado'] == 1)) {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     else
-        //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-
-    // $sql = "INSERT INTO usuarios (Id, Usu, Pas) VALUES (2, 'martin', '54321')"; // se prepara una QUERY. Genero una variable string donde se guarda como hacer la inserción en mysql.
-    // si el campo fuera id se quitan las comillas, si no (varchar) se ponen las comillas simples // aquí se prepara una string / variable de lo que quiero hacer.
-    // if (mysqli_query($conn, $sql)) // ejecuto la query
-        //echo "Alta registro"; // da verdadero
-    // else
-        //echo "Error: " . $sql . "<br>" . mysqli_error($conn); // da falso (error) // el mysqli_error($conn) me mostraría el nombre del error separado por el br de antes
 
     mysqli_close($conn); // se cierra la conexión
 ?>
