@@ -30,7 +30,8 @@ while True:
     url = 'https://www.virustotal.com/api/v3/files'
     
     #falta que recorra ficheros, de momento usamos ruta absoluta (asumimos deuda técnica (somos del barça))
-    archivo_ruta = input("Introduce la ruta absoluta del archivo que quieras comprobar ")
+    ruta_comprobacion = "/home/jairo/comprobacion/"
+    archivo_ruta = ruta_comprobacion 
     
     separar = archivo_ruta.split('/')
     nombre = separar[-1]
