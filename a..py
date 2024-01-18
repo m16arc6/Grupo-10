@@ -79,7 +79,7 @@ else:
     resultado = 0   # cuarentena
     carpeta = 'cuarentena'
 
-ruta_carpeta = os.path.join('/home/jairo/Escritorio', carpeta)  # Adjust the path accordingly
+ruta_carpeta = os.path.join('/home/jairo/Escritorio', carpeta)
 if not os.path.exists(ruta_carpeta):
     os.mkdir(ruta_carpeta)
     print(f"carpeta {carpeta} creada")
