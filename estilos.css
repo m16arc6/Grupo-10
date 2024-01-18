@@ -1,0 +1,91 @@
+#estilo .tabla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .img-archivo {
+    max-width: 100%;
+    height: auto;
+    align-items: center;
+    padding-top: 10%;
+  }
+  
+  .imagen-subir {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding-top: 140px;
+  }
+  .container {
+    text-align: center;
+  }
+  
+  .user-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .user-info img {
+    height: 35px;
+    width: 35px;
+  }
+  
+  .botones-izquierda {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+  }
+  
+  .botones-izquierda button {
+    margin-right: 10px;
+  }
+  
+  .tabla {
+    padding-top: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  .loginsingin {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    text-align: center;
+  }
+  .login-btn, .signin-btn {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background: #d8d8d8bd;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  body {
+    margin: 0;
+  }
+  
+  /* Añadido para centrar la imagen y ajustar los contenedores */
+  .user-info {
+    text-align: center;
+  }
+  
+  .form-container {
+    text-align: center;
+    margin-top: 20px; /* Ajusta según sea necesario */
+  }
+  
