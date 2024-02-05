@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Panel Administrador</title>
+  <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+  <div class="container">
+    <div class="botones-izquierda">
+      <a href="registro.html"><button>Registros</button></a>
+      <button>Añadir</button>
+    </div>
+    <div class="user-info">
+      <img src="fotos/usuario.png" alt="Administrador">
+      <p>Administrador</p>
+    </div>
+    <div class="img-archivo">
+      <img src="fotos/foto_fichero.jpg" alt="foto fichero" height="300px" width="400px">
+    </div>
+    <div class="form-container">
+      <form action="bajar.php" method="post">
+        <label for="archivo">Seleccionar archivo:</label>
+        <input type="file" name="archivo" id="archivo">
+        <input type="submit" value="Subir">
+      </form>
+    </div>
+    <div class="form-container">
+      <form action="bajar.php" method="post">
+        <label for="directorio">Seleccionar directorio:</label>
+        <input type="file" id="directorio" webkitdirectory directory multiple>
+        <input type="submit" value="Subir">
+      </form>
+    </div>
+  </div>
+</body>
+</html>
