@@ -1,0 +1,19 @@
+Metadatos del Archivo:
+
+Nombre del archivo.
+Tamaño del archivo.
+Tipo de archivo (extensión).
+Fecha de carga o análisis.
+Hashes y Firmas Digitales:
+
+MD5, SHA-1, y SHA-256 hashes del archivo.
+Firmas digitales y hash de la firma.
+Resultados de Escaneo y Análisis:
+
+Información sobre los motores antivirus que han escaneado el archivo.
+Resultados de detección de amenazas y clasificación.
+Información sobre comportamientos sospechosos o patrones de malware.
+Datos de Identificación:
+
+Información sobre el usuario que cargó el archivo.
+Historial de acciones realizadas en la plataforma.
