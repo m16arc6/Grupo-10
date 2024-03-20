@@ -1,31 +1,58 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <title>Subir archivo</title>
-  <link rel="stylesheet" type="text/css" href="estilos.css">
+  <title>Subir Archivo</title>
+  <style>
+    .tabla {
+      padding-top: 100px;
+    }
+    body {
+      margin: 10;
+    }
+    .container {
+      position: relative;
+    }
+    .user-info {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 10px;
+      text-align: center;
+    }
+    .user-info img {
+      height: 35px;
+      width: 35px;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <div class="user-info">
-      <img src="fotos/usuario.png" alt="Administrador">
+      <img src="usuario.png" alt="usuario">
       <p>Usuario</p>
     </div>
-    <div class="imagen-subir">
-      <img src="fotos/foto_fichero.jpg" alt="foto fichero" height="300px" width="400px">
-    </div>
-    <div class="form-container">
-      <form action="bajar.php" method="post">
-        <label for="archivo">Seleccionar archivo:</label>
-        <input type="file" name="archivo" id="archivo">
-        <input type="submit" value="Subir">
-      </form>
-    </div>
-    <div class="form-container">
-      <form action="bajar.php" method="post">
-        <label for="directorio">Seleccionar directorio:</label>
-        <input type="file" id="directorio" webkitdirectory directory multiple>
-        <input type="submit" value="Subir">
-      </form>
-    </div>
+    <table align="center" class="tabla">
+      <tr>
+        <td align="center">
+          <img src="foto_fichero.jpg" alt="foto fichero" height="300px" width="400px">
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <form action="prueba2.php" method="post" enctype="multipart/form-data"> <!--se podria cifrar desde aqui-->
+          <input  type="file" name="archivos[]">
+          <input type="submit" value="Subir">
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <form action="prueba2.php" method="post" enctype="multipart/form-data" > <!--se podria cifrar desde aqui-->
+          <input type="file" id="directorio" name= "archivos[]" multiple="multiple"  webkitdirectory directory multiple>
+          <input type="submit" value="Subir">
+          </form>
+        </td>
+      </tr>
+    </table>
   </div>
 </body>
 </html>
