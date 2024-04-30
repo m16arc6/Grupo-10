@@ -1,7 +1,9 @@
 <?php
-    $urllogin = 'login';
+    session_start();
+    session_destroy();
 
-    $redirect_url = "http://$_SERVER[192.168.141.*]/$urllogin";
-    
-    header("Location: $redirect_url");
-    exit();
+    session_destroy();
+
+    header('Location: index.html');
+    exit;
+?>
