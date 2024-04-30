@@ -1,15 +1,20 @@
 <?php
-$title = "Login";
+session_start();
+?>
+
+<?php
+
+$title="Login";
 
 if (isset($_REQUEST['login'])) {
-    $servername = "localhost";
-    $database = "usuarios";
-    $username = "jairo";
-    $password = "1234";
+    $host = 'localhost';
+    $dbname = 'usuarios';
+    $username = 'jairo';
+    $password = '1234';
 
-    $conn = mysqli_connect($servername, $username, $password, $database);
+    $conn = mysqli_connect($host, $username, $password, $dbname);
     if (!$conn) {
-        die("Connexió errònea: " . mysqli_connect_error());
+        die("Conexión errónea: " . mysqli_connect_error());
     }
 
     $usu = mysqli_real_escape_string($conn, $_REQUEST['user']);
@@ -22,16 +27,26 @@ if (isset($_REQUEST['login'])) {
         $storedHash = $row['passwd'];
         $inputHash = hash('sha512', $pas);
 
-        // Verify password using password_verify
-        if ($inputHash===$storedHash) {
-            echo "¡Hola! Usuario " . $_REQUEST['user'];
-            echo "<br>";
+        // Verificar contraseña utilizando password_verify
+        if ($inputHash === $storedHash) {
+            // Si las credenciales son correctas, establecer variables de sesión
+            $_SESSION['usuario_id'] = $row['id'];
+            $_SESSION['autenticado'] = true;
+	    $_SESSION['departamento'] = $row['departamento_empresa'];
+
+            if ($_SESSION['departamento'] == 'Admin') {
+		header('Location: admin_panel.html');
+		exit;
+	    } else {
+		header('Location: subir_archivo.php');
+		exit;
+	    }
         } else {
             echo "Contraseña incorrecta";
             echo "<br>";
-	    echo "Input Hash: " . $inputHash . "<br>";
+            echo "Input Hash: " . $inputHash . "<br>";
             echo "Hashed Password from Input: " . $inputHash . "<br>";
-	    echo "Stored Hash: " . $storedHash . "<br>";
+            echo "Stored Hash: " . $storedHash . "<br>";
             echo "<a href='login.php'>Volver</a>";
         }
     } else {
@@ -44,6 +59,9 @@ if (isset($_REQUEST['login'])) {
 } else {
 ?>
 <html>
+<head>
+<title><?php echo $title; ?></title>
+</head>
     <div class="d-flex justify-content-center h-25 py-5">
         <div>
             <form action="login.php" method="post">
@@ -57,3 +75,4 @@ if (isset($_REQUEST['login'])) {
 <?php
 }
 ?>
+
