@@ -1,17 +1,17 @@
 <?php
-$servername = "localhost";
-$database = "usuarios";
-$username = "jairo";
-$password = "1234";
+if (isset($_REQUEST['enviar'])) {
+    $servername = "localhost";
+    $database = "usuarios";
+    $username = "jairo";
+    $password = "1234";
 
-$conn = mysqli_connect($servername, $username, $password, $database);
-if (!$conn) {
-    die("Conexión errónea: " . mysqli_connect_error());
-}
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    if (!$conn) {
+        die("Conexión errónea: " . mysqli_connect_error());
+    }
 
-echo "Conexión correcta<br>";
+    echo "Conexión correcta<br>";
 
-if (isset($_POST['enviar'])) {
     $usu = $_POST['nombre']; // Extraemos usuario
     $apell = $_POST['apellido']; // Extraemos apellidos
     $pas = $_POST['passwd']; // Extraemos contraseña sin encriptar
@@ -26,6 +26,7 @@ if (isset($_POST['enviar'])) {
         if (mysqli_stmt_execute($stmt)) {
             echo "<br>";
             echo "¡Alta registro correcto!";
+	    header('Location: index.html');
         } else {
             echo "Error en la ejecución de la consulta: " . mysqli_stmt_error($stmt);
             // Si estás utilizando este script solo para depuración, puedes mostrar más detalles:
@@ -36,16 +37,16 @@ if (isset($_POST['enviar'])) {
     } else {
         echo "Error en la preparación de la consulta: " . mysqli_error($conn);
     }
-}
 
-mysqli_close($conn);
+    mysqli_close($conn);
+}
 ?>
 <html>
     <head>
         <meta charset="utf-8">
     </head>
     <body>
-        <form action='registro.php' method='POST'>
+        <form action='signin.php' method='POST'>
             <p>
                 <a href='logout.php'>Cerrar Sesión</a>
             </p>
@@ -56,7 +57,7 @@ mysqli_close($conn);
                 <input type='text' name="nombre" placeholder='Nombre Usuario'>
             </p>
             <p> <!-- Campo apellido -->
-                <input type='text' name="apellido" placeholder='Apellidos'>
+                <input type='text' name="apellido" placeholder='Apellido'>
             </p>
             <p> <!-- Campo contraseña -->
                 <input type='password' name='passwd' placeholder='Contraseña'>
