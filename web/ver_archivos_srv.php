@@ -5,7 +5,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
     header('Location: login.php');
     exit;
 } 
-$directorio = 'subidas/cuarentena'; // Cambia esto por la ruta real del directorio en tu servidor.
+$departamento = $_SESSION['departamento'];
+$directorio = "subidas/{$departamento}"; // Cambia esto por la ruta real del directorio en tu servidor.
 $archivos = scandir($directorio);
 
 foreach ($archivos as $archivo) {
