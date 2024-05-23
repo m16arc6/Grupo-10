@@ -12,9 +12,11 @@ $conexion = new mysqli("localhost", "jairo", "1234", "virustotal");
 if ($conexion->connect_error) {
     die("La conexión falló: " . $conexion->connect_error);
 }
+$usu = $_SESSION['username'];
+echo $usu;
 
 // Consulta SQL para obtener todos los datos de la tabla comprobacionn
-$sql = "SELECT * FROM comprobacionn";
+$sql = "SELECT * from comprobacionn WHERE nombre_usu='$usu'";
 $resultado = $conexion->query($sql);
 
 if ($resultado->num_rows > 0) {
