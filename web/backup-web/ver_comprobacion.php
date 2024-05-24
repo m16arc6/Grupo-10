@@ -12,36 +12,53 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
 <meta charset="UTF-8">
 <title>Comprobación de Resultados</title>
 <style>
-      /* Estilos añadidos aquí */
-      .tabla {
-        padding-top: 100px;
-      }
-      html, body {
-        height: 100%;
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
         margin: 0;
-        padding: 0;
-        background: linear-gradient(to right, #B1B1B1, #B1B1B1);
         font-family: Arial, sans-serif;
-      }
-      .container {
-        position: relative;
-      }
-      .user-info {
-        position: absolute;
-        top: 10px;
-        right: 50px;
-        margin: 10px;
+        background: linear-gradient(to right, #B1B1B1, #B1B1B1);
+    }
+    .container {
         text-align: center;
-      }
-      .user-info img {
-        height: 35px;
-        width: 35px;
-        border-radius: 50%;
-      }
-      .cerrar-sesion {
-        margin-top: 10px;
-      }
-      .sidebar {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .file-list {
+        list-style: none;
+        padding: 0;
+    }
+    .file-list li {
+        margin-bottom: 8px;
+    }
+    .user-info {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+      margin: 10px;
+      text-align: center;
+    }
+    .user-info img {
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+    }
+    .botones {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 9999;
+      color: #0084ff
+    }
+    .botones a {
+      margin-right: 10px;
+      color: #0084ff
+    }
+    .sidebar {
         position: fixed;
         right: 0;
         bottom: 0;
@@ -49,8 +66,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
         width: 200px;
         background-color: #F0F0F0;
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      .sidebar ul {
+    }
+    .sidebar ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
@@ -58,32 +75,32 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
         height: 100%;
         position: relative;
         z-index: 9999;
-      }
-      .sidebar ul li {
+    }
+    .sidebar ul li {
         padding: 10px;
         text-align: center;
-      }
-      .sidebar ul li a {
+    }
+    .sidebar ul li a {
         text-decoration: none;
         color: #333; /* Color de los enlaces */
         display: block;
-      }
-      .sidebar ul li a:hover {
+    }
+    .sidebar ul li a:hover {
         text-decoration: none;
         color: #666; /* Cambio de color al pasar el mouse */
         display: block;
-      }
-      button {
+    }
+    button {
         background-color: #0084ff;
         color: white;
         padding: 10px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-      }
+    }
       button:hover {
         background-color: #0056b3;
-      }
+    }
 </style>
 </head>
 <body>
@@ -94,7 +111,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
 <li><a href="ver_comprobacion.php">Registros</a></li>
 </ul>
 </div>
-<div class="container">
 <div class="user-info">
 <img src="fotos/usuario.png" alt="usuario">
 <p><?php echo htmlspecialchars($_SESSION['username']); ?></p>
@@ -102,7 +118,9 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
 <a href="logout.php"><button>Logout</button></a>
 </div>
 </div>
-<div class="tabla">
+<div class="container">
+<h1>Registro Archivos</h1>
+<ul class="file-list">
 <?php
         // Conexión a la base de datos
         $conexion = new mysqli("localhost", "jairo", "1234", "virustotal");

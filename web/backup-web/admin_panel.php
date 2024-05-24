@@ -103,15 +103,12 @@ if ($_SESSION['departamento'] !== "Admin") {
 </head>
 <body>
     <div class="container">
-    <div class="botones-izquierda">
-        <a href="ver_comprobacion.php"><button>Registros</button></a>
-        <a href="anadir.php"><button>Departamentos</button></a>
-    </div>
     <div class="sidebar">
         <ul class="sidebar-items">
         <li><a href="admin_panel.php">Inicio</a></li>
         <li><a href="ver_archivos_srv_admin.php">Descargar</a></li>
         <li><a href="ver-comprobacion_admin.php">Registros</a></li>
+        <li><a href="anadir.php">Departamentos</a></li>
         </ul>
     </div>
     <div class="user-info">

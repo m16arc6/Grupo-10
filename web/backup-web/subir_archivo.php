@@ -107,10 +107,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['autenticado'] !== true) {
   </style>
   </head>
   <body>
-    <div class="botones">
-      <a href="ver_comprobacion.php"><button>Registro</button></a>
-      <a href="ver_archivos_srv.php"><button>Descargar</button></a>
-      </div>
       <div class="sidebar">
         <ul class="sidebar-items">
         <li><a href="subir_archivo.php">Inicio</a></li>
